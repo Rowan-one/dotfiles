@@ -20,6 +20,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end,
 })
 
+require("transparent").setup({})
+
 vim.filetype.add({
 	extension = {
 		tsx = "typescriptreact",
