@@ -1,1 +1,5 @@
-return { "xiyaowong/transparent.nvim" }
+return {
+	"xiyaowong/transparent.nvim",
+	event = "VimEnter",
+	config = true,
+}

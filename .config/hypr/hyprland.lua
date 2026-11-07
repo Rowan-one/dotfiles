@@ -277,6 +277,12 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(launcher))
+hl.bind(
+	mainMod .. " + C",
+	hl.dsp.exec_cmd(
+		[[g=$(slurp) || exit; d="$HOME/Pictures/Screenshots"; mkdir -p "$d"; grim -g "$g" - | tee "$d/ss_$(date +%Y%m%d_%H%M%S).png" | wl-copy --type image/png]]
+	)
+)
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
