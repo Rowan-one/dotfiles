@@ -1,0 +1,4 @@
+awww img ~/.config/wallpaper/current.png
+pkill waybar
+waybar & disown
+hyprctl reload
