@@ -1,79 +1,94 @@
+// 1. volume <
+// 2. network <
+// 3. battery <
+// 4. workspaces <
+// 5. clock <
+// 6. cpu <
+// 7. gpu
+// 8. ram <
+
 {
-	"layer": "top",
-	"position": "top",
-	"height": 36,
-	"margin": "5 4 0 4",
-	"group/left": {
-		"orientation": "horizontal",
-		"modules": [
-			"hyprland/workspaces",
-			//            "niri/workspaces",
-			"mpris"
-		]
-	},
-	"group/left-hidden": {
-		"orientation": "horizontal",
-		"drawer": {
-			"transition-duration": 500,
-			"transition-left-to-right": false,
-			"click-to-reveal": true
-		},
-		"modules": [
-			"custom/arrow-right",
-			"battery",
-			"cpu",
-			"load"
-		]
-	},
-	"group/left-hidden-top": {
-		"orientation": "horizontal",
-		"modules": [
-			"power-profiles-daemon",
-			"group/left-hidden"
-		]
-	},
-	"group/right": {
-		"orientation": "horizontal",
-		"modules": [
-			"bluetooth",
-			"group/group-volume",
-			"group/group-backlight",
-			"network",
-			"tray"
-		]
-	},
-	"group/right-hidden": {
-		"orientation": "horizontal",
-		"drawer": {
-			"transition-duration": 500,
-			"transition-left-to-right": true,
-			"click-to-reveal": true
-		},
-		"modules": [
-			"custom/arrow-left",
-			"memory",
-			"temperature"
-		]
-	},
-	"group/right-hidden-top": {
-		"orientation": "horizontal",
-		"modules": [
-			"group/right-hidden",
-			"custom/ctlcenter"
-		]
-	},
-	"modules-left": [
-		"group/left-hidden-top",
-		"group/left"
-	],
-	"modules-center": [
-		"clock"
-	],
-	"modules-right": [
-		"group/right",
-		"group/right-hidden-top"
-	],
-	"include": [
-		"~/.config/waybar/modules.jsonc"
-	]
+  "layer": "top",
+
+  "modules-left": ["hyprland/workspaces", "cava", "hyprland/window"],
+  "modules-center": ["clock"],
+  "modules-right": ["battery", "pulseaudio", "network", "cpu", "memory"],
+
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 20,
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+  },
+
+  "clock": {
+    "format-alt": "{:%a, %d. %b  %H:%M}",
+  },
+
+  "cava": {
+    "cava_config": "$XDG_CONFIG_HOME/cava/waybar_raw.conf",
+    "input_delay": 2,
+    "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+    "actions": {
+      "on-click-right": "mode",
+    },
+  },
+
+  "network": {
+    "interface": "wlp0s20f3",
+    "format": "{ifname}",
+    "format-wifi": "  {essid}",
+    "format-ethernet": "{ifname} ",
+    "format-disconnected": "",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "active": "*",
+    },
+    "persistent-workspaces": {
+      "*": 5, // 5 workspaces by default on every monitor
+      "HDMI-A-1": 3, // but only three on HDMI-A-1
+    },
+  },
+
+  "cpu": {
+    "interval": 5,
+    "format": "cpu {}%",
+    "max-length": 10,
+  },
+  "memory": {
+    "interval": 10,
+    "format": "ram {}%",
+    "max-length": 10,
+  },
+
+  "pulseaudio": {
+    "format": "  {volume}%",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "muted",
+    "format-icons": {
+      "alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+      "alsa_output.pci-0000_00_1f.3.analog-stereo-muted": "",
+      "headphone": "",
+      "hands-free": "󰂑",
+      "headset": "󰂑",
+      "phone": "",
+      "phone-muted": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""],
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol",
+  },
 }

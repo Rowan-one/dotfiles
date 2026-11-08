@@ -85,12 +85,12 @@ hl.env("HYPRCURSOR_SIZE", "24")
 hl.config({
 	general = {
 		gaps_in = 8,
-		gaps_out = 16,
+		gaps_out = 8,
 
 		border_size = 2,
 
 		col = {
-			active_border = "rgb(38393A)",
+			active_border = "rgb(2D3540)",
 			inactive_border = "rgb(03060C)",
 		},
 
@@ -104,7 +104,7 @@ hl.config({
 	},
 
 	decoration = {
-		rounding = 16,
+		rounding = 12,
 		rounding_power = 2,
 
 		-- Change transparency of focused and unfocused windows
@@ -276,6 +276,7 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen("maximized"))
 hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(launcher))
 
 -- Move focus with mainMod + arrow keys
